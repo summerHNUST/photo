@@ -1,175 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D炫酷相册</title>
-    <link rel="stylesheet" href="./css/style.css">
+<meta charset="UTF-8">
+<title>老安美女!</title>
+<script src="js/jquery.min.js"></script>
+<script src="js/snow.js"></script>
+<link type="text/css" href="css/style.css" rel="stylesheet">
 </head>
-<style>
-  *{
-  margin: 0;
-  padding: 0;
-}
-:root,body{
-  height: 100%;
-  width: 100%;
-  background-color: black;
-}
-/* 最外层容器样式 */
-.container{
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  perspective: 2000px;
-  /* 调整视距 */
-  top: calc(50% - 100px);
-  left: calc(50% - 100px);
-  /* 垂直水平居中 */
-}
-/*立方体容器样式*/
-.cube{
-  width: 200px;
-  height: 200px;
-  transform-style: preserve-3d;
-  transform: rotateX(-30deg) rotateY(-80deg);
-  animation: roddy 10s linear infinite;
-/*设置动画匀速重复*/
-}
-@keyframes roddy{
-0%{transform: rotateX(0deg) rotateY(0deg);}
-100%{transform: rotateX(360deg) rotateY(360deg);}
-}
-.cube div{
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  opacity: 0.8;
-  /* 设置透明度 */
-  transition: all 0.4s;
-  /* 过渡动画 */
-}
-/* 外面照片大小设置 */
-.out_pic{
-  width: 200px;
-  height: 200px;
-}
-.cube .out_front{
-transform: rotateY(0deg) translateZ(100px);
-}
-.cube .out_back{
-transform: rotateY(180deg) translateZ(100px);
-}
-.cube .out_left{
-transform: rotateY(90deg) translateZ(100px);
-}
-.cube .out_right{
-transform: rotateY(-90deg) translateZ(100px);
-}
-.cube .out_top{
-transform: rotateX(90deg) translateZ(100px);
-}
-.cube .out_bottom{
-transform: rotateX(-90deg) translateZ(100px);
-}
-
-.cube #small{
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 50px;
-  left: 50px;
-}
-/* 里面照片大小设置 */
-.in_pic{
-  width: 100px;
-  height: 100px;
-}
-
-.cube .in_front{
-transform: rotateY(0deg) translateZ(50px);
-}
-.cube .in_back{
-transform: rotateY(180deg) translateZ(50px) ;
-}
-.cube .in_left{
-transform: rotateY(90deg) translateZ(50px);
-}
-.cube .in_right{
-transform: rotateY(-90deg) translateZ(50px);
-}
-.cube .in_top{
-transform: rotateX(90deg) translateZ(50px);
-}
-.cube .in_bottom{
-transform: rotateX(-90deg) translateZ(50px);
-}
-
-/*鼠标移入后样式*/
-.cube:hover .out_front{
-transform: rotateY(0deg) translateZ(200px);
-}
-.cube:hover .out_back{
-transform: rotateY(180deg) translateZ(200px);
-}
-.cube:hover .out_left{
-transform: rotateY(90deg) translateZ(200px);
-}
-.cube:hover .out_right{
-transform: rotateY(-90deg) translateZ(200px);
-}
-.cube:hover .out_top{
-transform: rotateX(90deg) translateZ(200px);
-}
-.cube:hover .out_bottom{
-transform: rotateX(-90deg) translateZ(200px);
-}
-
-</style>
 <body>
-    <div class="container">
-        <div class="cube">
-            <!-- 外面立方体开始 -->
-            <div class="out_front">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <div class="out_back">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <div class="out_left">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <div class="out_right">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <div class="out_top">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <div class="out_bottom">
-                <img src="./img/01.png" class="out_pic"/>
-            </div>
-            <!-- 外面立方体结束 -->
-            <!-- 里面立方体开始 -->
-            <div class="in_front" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <div class="in_back" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <div class="in_left" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <div class="in_right" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <div class="in_top" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <div class="in_bottom" id="small">
-                <img src="./img/01.png" class="in_pic"/>
-            </div>
-            <!-- 里面立方体结束 -->
-        </div>
-    </div>
+<div class="snow-container">
+  <div class="ziti">
+       <span>
+       </span>
+  </div>
+<div class="dongtai">
+<ul>
+<li><img src="./image/01.png" alt=""></li>
+<li><img src="./image/01.png" alt=""></li>
+<li><img src="./image/01.png" alt=""></li>
+<li><img src="./image/01.png" alt=""></li>
+<li><img src="./image/01.png" alt=""></li>
+<li><img src="./image/01.png" alt=""></li>
+</ul>
+</div>
+</div>
 </body>
 </html>
