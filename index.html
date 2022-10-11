@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   <style>
     h1{
-
+      font-size: 66px;
       text-shadow: 5px 5px 5px #f062d1;
       color: rgb(39, 216, 33);
       
@@ -37,27 +37,7 @@
   </div>
 </body>
 <script>
-  var voice = document.getElementById('voice');
  
- voice.play();   //调用播放
- //判断 WeixinJSBridge 是否存在
- if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
-     voice.play();
- }else {
-     //监听客户端抛出事件 "WeixinJSBridgeReady"
-     if (document.addEventListener) {
-         document.addEventListener("WeixinJSBridgeReady", function(){
-             voice.play();
-         }, false);
-     } else if (document.attachEvent) {
-         document.attachEvent("WeixinJSBridgeReady", function(){
-             voice.play();
-         });
-         document.attachEvent("onWeixinJSBridgeReady", function(){
-             voice.play();
-         });
-     }
- }
 </script>
 
 </html>
