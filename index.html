@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <title>老安美女</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    h1{
+
+      text-shadow: 5px 5px 5px #FF0000;
+      color: rgb(25, 63, 230);
+      
+    }
+   
+  </style>
 </head>
 <body>
-  <h1>老安美女!!!</h1>
-  <audio src="./BGM/五月天-突然好想你.mp3" controls autoplay loop></audio>
+  <h1 class="text">老安美女!!!</h1>
+  <audio id="voice" src="./BGM/五月天-突然好想你.mp3" controls autoplay loop></audio>
   <div class="box">
     <ul class="minbox">
       <li></li>
@@ -27,4 +36,28 @@
     </ol>
   </div>
 </body>
+<script>
+  var voice = document.getElementById('voice');
+ 
+ voice.play();   //调用播放
+ //判断 WeixinJSBridge 是否存在
+ if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+     voice.play();
+ }else {
+     //监听客户端抛出事件 "WeixinJSBridgeReady"
+     if (document.addEventListener) {
+         document.addEventListener("WeixinJSBridgeReady", function(){
+             voice.play();
+         }, false);
+     } else if (document.attachEvent) {
+         document.attachEvent("WeixinJSBridgeReady", function(){
+             voice.play();
+         });
+         document.attachEvent("onWeixinJSBridgeReady", function(){
+             voice.play();
+         });
+     }
+ }
+</script>
+
 </html>
