@@ -1,191 +1,117 @@
-@charset "utf-8";
-* {
+*{
   margin: 0;
   padding: 0;
 }
-body {
-  max-width: 100%;
-  min-width: 100%;
+:root,body{
   height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  background-color: black;
 }
-li {
-  list-style: none;
-}
-.box {
+/* 最外层容器样式 */
+.container{
   width: 200px;
   height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  margin-left: 45%;
-  margin-top: 30%;
   position: absolute;
-  z-index: 999999 !important;
-  -webkit-transform-style: preserve-3d;
-  -webkit-transform: rotateX(13deg);
-  -webkit-animation: move 5s linear infinite;
+  perspective: 2000px;
+  /* 调整视距 */
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  /* 垂直水平居中 */
 }
-.minbox {
+/*立方体容器样式*/
+.cube{
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(-80deg);
+  animation: roddy 10s linear infinite;
+/*设置动画匀速重复*/
+}
+@keyframes roddy{
+0%{transform: rotateX(0deg) rotateY(0deg);}
+100%{transform: rotateX(360deg) rotateY(360deg);}
+}
+.cube div{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.8;
+  /* 设置透明度 */
+  transition: all 0.4s;
+  /* 过渡动画 */
+}
+/* 外面照片大小设置 */
+.out_pic{
+  width: 200px;
+  height: 200px;
+}
+.cube .out_front{
+transform: rotateY(0deg) translateZ(100px);
+}
+.cube .out_back{
+transform: rotateY(180deg) translateZ(100px);
+}
+.cube .out_left{
+transform: rotateY(90deg) translateZ(100px);
+}
+.cube .out_right{
+transform: rotateY(-90deg) translateZ(100px);
+}
+.cube .out_top{
+transform: rotateX(90deg) translateZ(100px);
+}
+.cube .out_bottom{
+transform: rotateX(-90deg) translateZ(100px);
+}
+
+.cube #small{
+  position: absolute;
   width: 100px;
   height: 100px;
-  position: absolute;
+  top: 50px;
   left: 50px;
-  top: 30px;
-  -webkit-transform-style: preserve-3d;
 }
-.minbox li {
+/* 里面照片大小设置 */
+.in_pic{
   width: 100px;
   height: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
-.minbox li:nth-child(1) {
-  background: url(../img/01.png) no-repeat 0 0;
-  -webkit-transform: translateZ(50px);
+
+.cube .in_front{
+transform: rotateY(0deg) translateZ(50px);
 }
-.minbox li:nth-child(2) {
-  background: url(../img/02.png) no-repeat 0 0;
-  -webkit-transform: rotateX(180deg) translateZ(50px);
+.cube .in_back{
+transform: rotateY(180deg) translateZ(50px) ;
 }
-.minbox li:nth-child(3) {
-  background: url(../img/03.png) no-repeat 0 0;
-  -webkit-transform: rotateX(-90deg) translateZ(50px);
+.cube .in_left{
+transform: rotateY(90deg) translateZ(50px);
 }
-.minbox li:nth-child(4) {
-  background: url(../img/04.png) no-repeat 0 0;
-  -webkit-transform: rotateX(90deg) translateZ(50px);
+.cube .in_right{
+transform: rotateY(-90deg) translateZ(50px);
 }
-.minbox li:nth-child(5) {
-  background: url(../img/05.png) no-repeat 0 0;
-  -webkit-transform: rotateY(-90deg) translateZ(50px);
+.cube .in_top{
+transform: rotateX(90deg) translateZ(50px);
 }
-.minbox li:nth-child(6) {
-  background: url(../img/06.png) no-repeat 0 0;
-  -webkit-transform: rotateY(90deg) translateZ(50px);
+.cube .in_bottom{
+transform: rotateX(-90deg) translateZ(50px);
 }
-.maxbox li:nth-child(1) {
-  background: url(../img/1.png) no-repeat 0 0;
-  -webkit-transform: translateZ(50px);
+
+/*鼠标移入后样式*/
+.cube:hover .out_front{
+transform: rotateY(0deg) translateZ(200px);
 }
-.maxbox li:nth-child(2) {
-  background: url(../img/2.png) no-repeat 0 0;
-  -webkit-transform: translateZ(50px);
+.cube:hover .out_back{
+transform: rotateY(180deg) translateZ(200px);
 }
-.maxbox li:nth-child(3) {
-  background: url(../img/3.png) no-repeat 0 0;
-  -webkit-transform: rotateX(-90deg) translateZ(50px);
+.cube:hover .out_left{
+transform: rotateY(90deg) translateZ(200px);
 }
-.maxbox li:nth-child(4) {
-  background: url(../img/4.png) no-repeat 0 0;
-  -webkit-transform: rotateX(90deg) translateZ(50px);
+.cube:hover .out_right{
+transform: rotateY(-90deg) translateZ(200px);
 }
-.maxbox li:nth-child(5) {
-  background: url(../img/5.png) no-repeat 0 0;
-  -webkit-transform: rotateY(-90deg) translateZ(50px);
+.cube:hover .out_top{
+transform: rotateX(90deg) translateZ(200px);
 }
-.maxbox li:nth-child(6) {
-  background: url(../img/6.png) no-repeat 0 0;
-  -webkit-transform: rotateY(90deg) translateZ(50px);
-}
-.maxbox {
-  width: 800px;
-  height: 400px;
-  position: absolute;
-  left: 0;
-  top: -20px;
-  -webkit-transform-style: preserve-3d;
-}
-.maxbox li {
-  width: 200px;
-  height: 200px;
-  background: #fff;
-  border: 1px solid #ccc;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0.2;
-  -webkit-transition: all 1s ease;
-}
-.maxbox li:nth-child(1) {
-  -webkit-transform: translateZ(100px);
-}
-.maxbox li:nth-child(2) {
-  -webkit-transform: rotateX(180deg) translateZ(100px);
-}
-.maxbox li:nth-child(3) {
-  -webkit-transform: rotateX(-90deg) translateZ(100px);
-}
-.maxbox li:nth-child(4) {
-  -webkit-transform: rotateX(90deg) translateZ(100px);
-}
-.maxbox li:nth-child(5) {
-  -webkit-transform: rotateY(-90deg) translateZ(100px);
-}
-.maxbox li:nth-child(6) {
-  -webkit-transform: rotateY(90deg) translateZ(100px);
-}
-.box:hover ol li:nth-child(1) {
-  -webkit-transform: translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-.box:hover ol li:nth-child(2) {
-  -webkit-transform: rotateX(180deg) translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-.box:hover ol li:nth-child(3) {
-  -webkit-transform: rotateX(-90deg) translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-.box:hover ol li:nth-child(4) {
-  -webkit-transform: rotateX(90deg) translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-.box:hover ol li:nth-child(5) {
-  -webkit-transform: rotateY(-90deg) translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-.box:hover ol li:nth-child(6) {
-  -webkit-transform: rotateY(90deg) translateZ(300px);
-  width: 400px;
-  height: 400px;
-  opacity: 0.8;
-  left: -100px;
-  top: -100px;
-}
-@keyframes move {
-  0% {
-    -webkit-transform: rotateX(13deg) rotateY(0deg);
-  }
-  100% {
-    -webkit-transform: rotateX(13deg) rotateY(360deg);
-  }
+.cube:hover .out_bottom{
+transform: rotateX(-90deg) translateZ(200px);
 }
