@@ -7,16 +7,20 @@ li {
   list-style: none;
 }
 
+
 html{
-	background:linear-gradient(pink 0%,#000 80%);
+	/* background:linear-gradient(pink 0%,rgb(127, 128, 129) 80%); */
+  background: url('../img/11.jpg');
+  background-size: contain;
     height: 100%;	
    
 }
 
 h1 {
- 
-  left: 15%;
-  top: 30%;
+  text-align: center;
+  left: 30%;
+  top: 8%;
+  
 }
 .box {
   width: 400px;
