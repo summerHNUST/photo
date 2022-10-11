@@ -1,28 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onselectstart="return false">
+    <!-- onselectstart="return false"网页复制功能关闭 -->
 <head>
-<meta charset="UTF-8">
-<title>老安美女!</title>
-<script src="js/jquery.min.js"></script>
-<script src="js/snow.js"></script>
-<link type="text/css" href="css/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老安美女!</title>
 </head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+body{
+    background-color: #000;
+}
+.pic{
+    width: 120px;
+    height:180px ;
+    /* border: 1px solid #f00; */
+    margin: 180px auto 0;
+    position: relative;
+      /* 3D环境搭建 */
+      transform-style: preserve-3d;
+    /* 隔多远去看 perspective写在transform内解决第一张图片比其他图片大的问题*/
+    /* perspective: 800px; */
+    /* 将整个div向下旋转，防止第一张挡着后面的图片 */
+    transform:perspective(800px) rotateX(-10deg) rotateY(0deg);
+}
+.pic img{
+    /* 不把图片设置成100%会失帧 */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* 不设置圆角图片旋转时第一二张不受控制 */
+    border-radius: 5px;
+    /* 阴影 */
+    box-shadow: 0px 0px 10px #fff;
+    /* 倒影 */
+    -webkit-box-reflect:below 10px -webkit-linear-gradient(top,rgba(0,0,0,0) 50%,rgba(0,0,0,.5) 100%);
+}
+.pic p{
+    width: 1200px;
+    height: 1200px;
+    background:-webkit-radial-gradient(center center,600px 600px,rgba(255,255,255,.5),rgba(0,0,0,0));
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-top: -600px;
+    margin-left: -600px;
+    transform: rotateX(90deg);
+    border-radius: 600px;
+}
+</style>
 <body>
-<div class="snow-container">
-  <div class="ziti">
-       <span>
-       </span>
-  </div>
-<div class="dongtai">
-<ul>
-<li><img src="./image/01.png" alt=""></li>
-<li><img src="./image/01.png" alt=""></li>
-<li><img src="./image/01.png" alt=""></li>
-<li><img src="./image/01.png" alt=""></li>
-<li><img src="./image/01.png" alt=""></li>
-<li><img src="./image/01.png" alt=""></li>
-</ul>
-</div>
-</div>
+    <div class="pic">
+        <img src="img/a1.jpg">
+        <img src="img/a2.jpg">
+        <img src="img/a3.jpg">
+        <img src="img/a4.jpg">
+        <img src="img/a5.jpg">
+        <img src="img/a6.jpg">
+        <img src="img/a7.jpg">
+        <img src="img/a8.jpg">
+        <img src="img/a9.jpg">
+        <img src="img/a10.jpg">
+        <img src="img/a11.jpg">
+        <img src="img/a12.jpg">
+        <!-- style="display: block; transform: rotateY(60deg);" -->
+        <p></p>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+            var imgl=$('.pic img').length;
+            var deg=360/imgl;
+            // roX是div.pic绕Y轴旋转roY是整个相册绕X轴旋转
+            var roY=0,roX=0;
+            var xN,yN;
+            var play=null;
+            $('.pic img').each(function(i){
+                $(this).css({
+                    'transform':'rotateX(-10deg) rotateY('+i*deg+'deg) translateZ(350px)',
+                    // 让图片逐张出来
+                    'transition':'1s '+(imgl-i)*0.2+'s'
+                });
+                // 把每张图片的拖拽功能关闭
+                $(this).attr('ondragstart','return false');
+            });
+            // 鼠标按下事件mousedown按下mousemove移动up释放,bind绑定
+            $(document).mousedown(function(ev){
+                // ev监听事件当鼠标按下当前的事件就触发
+                console.log('按下！');
+                //鼠标按下清除定时器防止产生两个定时器
+                clearInterval(play);
+                 // 前一刻鼠标位置
+                    var xper=ev.clientX;
+                    var yper=ev.clientY;
+                    // console.log('xper:'+xper);
+                $(this).bind('mousemove',function(ev){
+                //  移动时触发ev，此刻的ev是mousedown下一秒的事件
+                    console.log('移动!');
+                    // 当前鼠标的位置
+                    var x=ev.clientX;
+                    var y=ev.clientY;
+                    // console.log('x:'+x);
+                    // 根据鼠标轨迹划线
+                    // $('body').append(
+                    //     '<div style="width:5px;height:5px;background:#f00;position:absolute;top:'+y+'px;left:'+x+'px;"></div>');
+                    // 鼠标的移动像素
+                    xN=x-xper;
+                    yN=y-yper;
+                    //div绕Y轴旋转逐渐叠加
+                    roY+=xN*0.01;
+                    roX-=yN*0.005;
+                    $('div.pic').css({
+                        // perspective写在函数里确保旋转时每张图片都一样大更美观
+                        transform:'perspective(800px) rotateX('+roX+'deg) rotateY('+roY+'deg)'
+                    })
+                    
+                })
+            }).mouseup(function(){
+                console.log('释放！');
+                $(this).unbind('mousemove');
+                // 释放鼠标后每三秒xN逐渐减小当xN小于1后清除
+                var play=setInterval(function(){
+                        xN*=0.95;
+                        yN*=0.95;
+                        console.log(xN);
+                        if(Math.abs(xN)<1&&Math.abs(yN)<1){
+                            clearInterval(play);
+                        }
+                        roY+=xN*0.01;
+                        roX-=yN*0.005;
+                        $('div.pic').css({
+                        transform:'perspective(800px) rotateX('+roX+'deg) rotateY('+roY+'deg)'
+                    })
+                },30);
+            })
+
+        })
+    </script>
 </body>
 </html>
