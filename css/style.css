@@ -10,8 +10,8 @@ li {
 
 html{
 	/* background:linear-gradient(pink 0%,rgb(127, 128, 129) 80%); */
-  background: url('../img/11.jpg');
-  background-size: contain;
+  background: #ccc;
+ 
     height: 100%;	
    
 }
